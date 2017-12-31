@@ -45,14 +45,6 @@ def SqueezeNet(include_top=False, weights='imagenet',
     """Instantiates the SqueezeNet architecture.
     """
 
-    if weights not in {'imagenet', None}:
-        raise ValueError('The `weights` argument should be either '
-                         '`None` (random initialization) or `imagenet` '
-                         '(pre-training on ImageNet).')
-
-    if weights == 'imagenet' and classes != 1000:
-        raise ValueError('If using `weights` as imagenet with `include_top`'
-                         ' as true, `classes` should be 1000')
 
     input_shape = _obtain_input_shape(input_shape,
                                       default_size=227,
