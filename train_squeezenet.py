@@ -107,12 +107,13 @@ def plot_training(history):
     plt.plot(epochs, acc, 'r.')
     plt.plot(epochs, val_acc, 'r')
     plt.title('Training and validation accuracy')
+    plt.savefig("accuracy_plot.png")
+    plt.close()
 
-    plt.figure()
     plt.plot(epochs, loss, 'r.')
     plt.plot(epochs, val_loss, 'r-')
     plt.title('Training and validation loss')
-    plt.show()
+    plt.savefig("loss_plot.png")
 
 if __name__=="__main__":
     a = argparse.ArgumentParser()
