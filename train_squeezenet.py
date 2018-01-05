@@ -40,8 +40,7 @@ def add_new_last_layer(base_model, nb_classes):
     x = Activation('relu', name='relu_conv10')(x)
     x = GlobalAveragePooling2D()(x)
     predictions = Activation('softmax')(x)
-    model = Model(inputs=base_model.input, outputs=predictions)
-    return model
+    return Model(inputs=base_model.input, outputs=predictions)
 
 def train(args):
 
@@ -78,7 +77,10 @@ def train(args):
     base_model = SqueezeNet()
     setup_to_transfer_learn(base_model)
     model = add_new_last_layer(base_model,nb_classes)
-    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+
+    sgd = SGD(lr=0.001,decay=0.0002,momentum=0.9)
+    model.compile(optimizer=sgd,loss='categorical_crossentropy',metrics=['accuracy'])
+    #model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
 
     history_tl = model.fit_generator(
