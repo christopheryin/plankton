@@ -49,9 +49,9 @@ def setup_to_finetune(model):
 
     #layer 26 = finetune last 5 fire modules
 
-    for layer in model.layers[:19]:
+    for layer in model.layers[:11]:
         layer.trainable=False
-    for layer in model.layers[19:]:
+    for layer in model.layers[11:]:
         layer.trainable=True
     model.compile(optimizer=SGD(lr=0.0001,momentum=0.9),loss='categorical_crossentropy',metrics=['accuracy'])
 
