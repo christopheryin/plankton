@@ -46,9 +46,12 @@ def setup_to_finetune(model):
     #5 layers in final output, 7 layers per fire module, finetune last 4 fire modules = 28 + 5 = 33 layers unfrozen
     #67 layers total, 0-indexed
     #layers 0-33 should be frozen, layers 34-66 trainable
-    for layer in model.layers[:34]:
+
+    #layer 26 = finetune last 5 fire modules
+
+    for layer in model.layers[:26]:
         layer.trainable=False
-    for layer in model.layers[34:]:
+    for layer in model.layers[26:]:
         layer.trainable=True
     model.compile(optimizer=SGD(lr=0.0001,momentum=0.9),loss='categorical_crossentropy',metrics=['accuracy'])
 
@@ -88,9 +91,9 @@ def train(args):
     setup_to_transfer_learn(base_model)
     model = add_new_last_layer(base_model,nb_classes)
 
-    sgd = SGD(lr=0.001,decay=0.0002,momentum=0.9)
-    model.compile(optimizer=sgd,loss='categorical_crossentropy',metrics=['accuracy'])
-    #model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+    #sgd = SGD(lr=0.001,decay=0.0002,momentum=0.9)
+    #model.compile(optimizer=sgd,loss='categorical_crossentropy',metrics=['accuracy'])
+    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
     history_tl = model.fit_generator(
         generator=train_generator,
