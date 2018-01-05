@@ -2,3 +2,4 @@ sand_model1.h5 - trained with transfer learning only, 3 epochs: 0.797 acc
 sand_model2.h5 - trained with transfer learning only, 6 epochs: 0.77 acc
 sand_model3.h5 - trained w/ tranfer learning + finetuning, 3 epochs: 0.754 acc
 sand_model4.h5 - trained w/ transfer learning + finetuning, 5 epochs (batch=64): 0.745 acc
+sand_model5.h5 - trained w/ transfer learning + finetuning, 5 epochs (batch=64): 0.805 acc
