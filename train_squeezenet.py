@@ -42,6 +42,16 @@ def add_new_last_layer(base_model, nb_classes):
     predictions = Activation('softmax')(x)
     return Model(inputs=base_model.input, outputs=predictions)
 
+def setup_to_finetune(model):
+    #5 layers in final output, 7 layers per fire module, finetune last 4 fire modules = 28 + 5 = 33 layers unfrozen
+    #67 layers total, 0-indexed
+    #layers 0-33 should be frozen, layers 34-66 trainable
+    for layer in model.layers[:34]:
+        layer.trainable=False
+    for layer in model.layers[34:]:
+        layer.trainable=True
+    model.compile(optimizer=SGD(lr=0.0001,momentum=0.9),loss='categorical_crossentropy',metrics=['accuracy'])
+
 def train(args):
 
     nb_train_samples = get_nb_files(args.train_dir)
@@ -82,7 +92,6 @@ def train(args):
     model.compile(optimizer=sgd,loss='categorical_crossentropy',metrics=['accuracy'])
     #model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
-
     history_tl = model.fit_generator(
         generator=train_generator,
         epochs=nb_epoch,
@@ -92,11 +101,21 @@ def train(args):
         class_weight="auto"
     )
 
+    setup_to_finetune(model)
+
+    history_ft = model.fit_generator(
+        generator=train_generator,
+        epochs=nb_epoch,
+        steps_per_epoch=steps_per_epoch,
+        validation_data=val_generator,
+        validation_steps=validation_steps,
+        class_weight="auto"
+    )
 
     model.save(args.output_model_file)
 
     if args.plot:
-        plot_training(history_tl)
+        plot_training(history_ft)
 
 
 def plot_training(history):
