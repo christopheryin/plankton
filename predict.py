@@ -43,7 +43,7 @@ if __name__ == "__main__":
     scores = []
     for img_path in test_img_paths:
 
-        if 'dog' in img_path:
+        if 'sand' in img_path:
             truths = truths + [CLASS1]
         else:
             truths = truths + [CLASS0]

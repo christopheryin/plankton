@@ -17,6 +17,7 @@ def pr(truths,scores,filepath):
     plt.xlim([0.0, 1.0])
     plt.title('2-class Precision-Recall curve: AP={0:0.2f}'.format(average_precision))
     plt.savefig(filepath)
+    plt.close()
 
 
 #roc_auc_score + curve
@@ -34,6 +35,7 @@ def roc(truths,scores,filepath):
     plt.ylabel('True Positive Rate')
     plt.xlabel('False Positive Rate')
     plt.savefig(filepath)
+    plt.close()
 
 def gen_metrics(truths,preds,scores):
 
@@ -51,7 +53,7 @@ def gen_metrics(truths,preds,scores):
     print(rscore)
 
     #precision_recall
-    pr(truths,scores,pr_filepath)
+    #pr(truths,scores,pr_filepath)
 
     #roc
-    roc(truths,scores,roc_filepath)
+    #roc(truths,scores,roc_filepath)
