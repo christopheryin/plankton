@@ -1,1 +1,1 @@
-python predict.py --model sand_model2.h5 --images test_dir/T4
+python predict.py --model sand_model6.h5 --images test_dir/T3

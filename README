@@ -10,6 +10,6 @@ Record of classifier performance for varying training parameters:
     sand_model3.h5 - trained w/ tranfer learning + finetuning to layer 34, 3 epochs: 0.754 acc
     sand_model4.h5 - trained w/ transfer learning + finetuning to layer 34, 5 epochs (batch=64): 0.745 acc
     sand_model5.h5 - trained w/ transfer learning + finetuning to layer 19, 5 epochs (batch=64): 0.839 acc
-
+    sand_model6.h5 - trained w/ transfer learning + finetuning to layer 11, 8 epochs (batch=128): 0.816 acc
 
 Note: repo also contains code for fine-tuning inception. This hasn't been explored yet, will potentially attempt in the future.
