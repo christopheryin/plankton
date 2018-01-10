@@ -1,3 +1,5 @@
+#batch renaming of files
+
 import os
 import argparse
 

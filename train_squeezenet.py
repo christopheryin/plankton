@@ -1,13 +1,14 @@
+#adapted from https://github.com/DeepLearningSandbox/DeepLearningSandbox/tree/master/transfer_learning
+
 import os
 import sys
 import glob
 import argparse
 import matplotlib.pyplot as plt
 
-from keras import __version__
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import Model
-from keras.layers import Dense, GlobalAveragePooling2D,Dropout,Convolution2D,Activation
+from keras.layers import GlobalAveragePooling2D,Dropout,Convolution2D,Activation
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import SGD
 
@@ -46,7 +47,6 @@ def setup_to_finetune(model):
     #5 layers in final output, 7 layers per fire module, finetune last 4 fire modules = 28 + 5 = 33 layers unfrozen
     #67 layers total, 0-indexed
     #layers 0-33 should be frozen, layers 34-66 trainable
-
     #layer 26 = finetune last 5 fire modules
 
     for layer in model.layers[:11]:

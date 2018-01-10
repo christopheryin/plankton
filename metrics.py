@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score,accuracy_score, average_precision_score,precision_recall_curve, \
     classification_report,roc_auc_score,roc_curve, recall_score
 
-
+#precision and recall metrics
 def pr(truths,scores,filepath):
     average_precision = average_precision_score(truths, scores)
     precision, recall, _ = precision_recall_curve(truths, scores)
@@ -37,6 +37,7 @@ def roc(truths,scores,filepath):
     plt.savefig(filepath)
     plt.close()
 
+#generate metrics report and plots
 def gen_metrics(truths,preds,scores):
 
     pr_filepath = 'pr1.png'

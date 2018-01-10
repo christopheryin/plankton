@@ -1,10 +1,8 @@
-import sys
+#for batch of images, predict class with specified model and report classifier performance
+
 import glob
-import os
 import argparse
-import numpy as np
 from keras.models import load_model
-import matplotlib.pyplot as plt
 from keras.preprocessing import image
 from keras.applications.imagenet_utils import preprocess_input
 from metrics import *
@@ -30,13 +28,11 @@ if __name__ == "__main__":
 
 
     model = load_model(args.model)
-
-    #image_dir = "./" + args.images + "/*jpg"
     image_dir = args.images + "/*jpg"
 
     test_img_paths = [img_path for img_path in glob.glob(image_dir)]
 
-    # Making predictions
+    #making predictions
     test_ids = []
     preds = []
     truths = []

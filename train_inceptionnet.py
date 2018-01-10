@@ -1,10 +1,11 @@
+#adapted from https://github.com/DeepLearningSandbox/DeepLearningSandbox/tree/master/transfer_learning
+
 import os
 import sys
 import glob
 import argparse
 import matplotlib.pyplot as plt
 
-from keras import __version__
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
 from keras.models import Model
 from keras.layers import Dense, GlobalAveragePooling2D
@@ -12,7 +13,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import SGD
 
 
-IM_WIDTH, IM_HEIGHT = 299, 299 #fixed size for InceptionV3
+IM_WIDTH, IM_HEIGHT = 299, 299
 NB_EPOCHS = 3
 BAT_SIZE = 32
 FC_SIZE = 1024

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jun  9 15:27:52 2016
+@author: eric orenstein
 
-@author: eric
+aspect-preserving image resizing
 """
 
 import sys
